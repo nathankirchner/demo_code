@@ -318,7 +318,7 @@ if __name__ == "__main__":
         y = (screen_height - window_height) // 2
         root.geometry(f'{window_width}x{window_height}+{x}+{y}')
         
-        label = tk.Label(root, text="Which data you want to run GWA Reviewer AI with?", pady=20)
+        label = tk.Label(root, text="Which data you want to run GWA Reviewer AI with?\nAuto-selecting Construction in 3 seconds...", pady=20)
         label.pack()
         
         def construction_clicked():
@@ -329,6 +329,9 @@ if __name__ == "__main__":
             root.destroy()
             create_report("_I")
         
+        def auto_select():
+            construction_clicked()
+        
         button_frame = tk.Frame(root)
         button_frame.pack(pady=10)
         
@@ -337,6 +340,9 @@ if __name__ == "__main__":
         
         traffic_btn = tk.Button(button_frame, text="Traffic", command=traffic_clicked, width=12)
         traffic_btn.pack(side=tk.LEFT, padx=5)
+        
+        # Set timer for auto-selection
+        root.after(3000, auto_select)
         
         root.mainloop()
     
